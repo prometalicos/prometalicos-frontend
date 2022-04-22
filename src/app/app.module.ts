@@ -3,6 +3,7 @@ import { HashLocationStrategy, LocationStrategy, PathLocationStrategy } from '@a
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http'
 
 import {
   PERFECT_SCROLLBAR_CONFIG,
@@ -45,7 +46,9 @@ import {
   UtilitiesModule,
 } from '@coreui/angular-pro';
 
-import { IconModule, IconSetService } from '@coreui/icons-angular';
+import { IconModule, IconSetModule, IconSetService } from '@coreui/icons-angular';
+import { AuthGuard } from './core/guards/auth-guard.guard';
+import { NotFoundComponent } from './features/not-found-page/components/not-found/not-found.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -59,7 +62,7 @@ const APP_CONTAINERS = [
 ];
 
 @NgModule({
-  declarations: [AppComponent, ...APP_CONTAINERS],
+  declarations: [AppComponent, ...APP_CONTAINERS, NotFoundComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -72,6 +75,7 @@ const APP_CONTAINERS = [
     HeaderModule,
     SidebarModule,
     IconModule,
+    IconSetModule.forRoot(),
     PerfectScrollbarModule,
     NavModule,
     ButtonModule,
@@ -87,8 +91,11 @@ const APP_CONTAINERS = [
     BadgeModule,
     ListGroupModule,
     CardModule,
+    HttpClientModule
   ],
   providers: [
+    IconSetService,
+    AuthGuard,
     {
       provide: LocationStrategy,
       useClass: HashLocationStrategy,

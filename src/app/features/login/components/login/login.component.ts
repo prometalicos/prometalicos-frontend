@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -6,10 +7,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  @Output() onSubmitCredentials: EventEmitter<any> = new EventEmitter<any>();
+  public loginForm: FormGroup = this.fb.group({
+    username: ['', Validators.required],
+    password: ['', [Validators.required]]
+  });
 
-  constructor() { }
+  constructor(
+    private fb: FormBuilder
+  ) { }
 
   ngOnInit(): void {
+  }
+
+  public logIn(user: any) {
+    this.onSubmitCredentials.emit(user);
   }
 
 }
