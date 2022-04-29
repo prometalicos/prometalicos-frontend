@@ -12,23 +12,24 @@ export const navItems: INavData[] = [
   },
   {
     name: 'Administrar',
+    url: '/manage',
     iconComponent: { name: 'cil-settings' },
     children: [
       {
         name: 'Concesión',
-        url: ''
+        url: '/manage/concession'
       },
       {
         name: 'Sede',
-        url: ''
+        url: '/manage/campus'
       },
       {
         name: 'Subsistema',
-        url: ''
+        url: '/manage/subsystem'
       },
       {
         name: 'Usuarios',
-        url: ''
+        url: '/manage/users'
       }
     ]
   },
