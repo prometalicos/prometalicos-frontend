@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Concession } from '../../../models/concession.model';
+import { ManageService } from '../../../services/manage.service';
 
 @Component({
   selector: 'app-concession-create-page',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ConcessionCreatePageComponent implements OnInit {
 
-  constructor() { }
+  constructor(private manageService: ManageService) { }
 
   ngOnInit(): void {
   }
 
+  public saveConcession(concession: Concession) {
+    this.manageService.addConcession(concession).subscribe(res =>
+      console.log(res));
+
+  }
 }

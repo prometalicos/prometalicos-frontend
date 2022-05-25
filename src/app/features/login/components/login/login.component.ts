@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -8,6 +8,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
   @Output() onSubmitCredentials: EventEmitter<any> = new EventEmitter<any>();
+
   public loginForm: FormGroup = this.fb.group({
     username: ['', Validators.required],
     password: ['', [Validators.required]]
@@ -18,7 +19,12 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+   
   }
+
+  ngOnChanges() {
+  }
+
 
   public logIn(user: any) {
     this.onSubmitCredentials.emit(user);

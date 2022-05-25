@@ -23,7 +23,7 @@ import {
   DefaultFooterComponent,
   DefaultHeaderComponent,
   DefaultLayoutComponent
-} from './core/containers';
+} from './core/layout';
 
 import {
   AvatarModule,
@@ -44,6 +44,7 @@ import {
   SidebarModule,
   TabsModule,
   UtilitiesModule,
+   ModalModule
 } from '@coreui/angular-pro';
 
 import { IconModule, IconSetModule, IconSetService } from '@coreui/icons-angular';
@@ -91,6 +92,7 @@ const APP_CONTAINERS = [
     BadgeModule,
     ListGroupModule,
     CardModule,
+    ModalModule,
     HttpClientModule
   ],
   providers: [

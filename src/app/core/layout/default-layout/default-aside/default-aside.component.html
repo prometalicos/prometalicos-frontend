@@ -8,7 +8,7 @@
   size="lg"
 >
   <!--nav for tabs-->
-  <c-sidebar-header class="bg-transparent p-0">
+  <!-- <c-sidebar-header class="bg-transparent p-0">
     <c-nav variant="underline">
       <c-nav-item>
         <a
@@ -45,7 +45,7 @@
         </a>
       </c-nav-item>
       <c-nav-item class="ms-auto me-2 d-flex align-items-center">
-        <!--aside toggler-->
+        
         <button
           cButtonClose
           cSidebarToggle="aside1"
@@ -55,9 +55,9 @@
       </c-nav-item>
     </c-nav>
   </c-sidebar-header>
-
+ -->
   <!--tab content-->
-  <c-tab-content #asideTabContent="cTabContent">
+  <!-- <c-tab-content #asideTabContent="cTabContent">
     <c-tab-pane role="tabpanel" style="transition: opacity 150ms linear 0s">
       <ng-container *ngTemplateOutlet="tabPane1"></ng-container>
     </c-tab-pane>
@@ -76,10 +76,10 @@
       <ng-container *ngTemplateOutlet="tabPane3"></ng-container>
     </c-tab-pane>
   </c-tab-content>
-</c-sidebar>
+</c-sidebar> -->
 
 <!--tab pane templates-->
-<ng-template #tabPane1>
+<!-- <ng-template #tabPane1>
   <div [flush]="true" cListGroup>
     <a
       [cBorder]="{ start: { color: 'secondary', width: 4 } }"
@@ -211,9 +211,9 @@
       </div>
     </a>
   </div>
-</ng-template>
+</ng-template> -->
 
-<ng-template #tabPane2>
+<!-- <ng-template #tabPane2>
   <div [flush]="true" cListGroup>
     <a
       *ngFor="let message of messages; index as i; last as isLast"
@@ -242,9 +242,9 @@
       </small>
     </a>
   </div>
-</ng-template>
+</ng-template> -->
 
-<ng-template #tabPane3>
+<!-- <ng-template #tabPane3>
   <h6>Settings</h6>
   <div>
     <div class="clearfix mt-4">
@@ -328,4 +328,4 @@
     <c-progress-bar [value]="10" color="success-gradient"></c-progress-bar>
   </c-progress>
   <small class="text-medium-emphasis">25GB/256GB</small>
-</ng-template>
+</ng-template> -->

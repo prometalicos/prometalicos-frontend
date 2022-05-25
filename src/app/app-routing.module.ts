@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { DefaultLayoutComponent } from './core/containers';
+import { DefaultLayoutComponent } from './core/layout';
 import { AuthGuard } from './core/guards/auth-guard.guard';
 import { NotFoundComponent } from './features/not-found-page/components/not-found/not-found.component';
 

@@ -1,1 +1,43 @@
-<p>campus-create works!</p>
+<c-col xs="12">
+  <c-card class="mb-4">
+    <c-card-header class="card-header">
+      <div class="card-header__title">
+        <c-icon name="cil-house" size="lg"></c-icon>
+        <h5>Sedes</h5>
+      </div>
+      <button cButton color="success" [cModalToggle]="createCampusModal.id">
+        <c-icon name="cil-plus"></c-icon>
+        Añadir sede
+      </button>
+    </c-card-header>
+    <c-card-body>
+
+    </c-card-body>
+  </c-card>
+</c-col>
+
+<!-- modal creacion de sede -->
+<c-modal #createCampusModal alignment="center" id="createCampusModal">
+  <c-modal-header>
+    <h5 cModalTitle>Nueva sede</h5>
+    <button [cModalToggle]="createCampusModal.id" cButtonClose></button>
+  </c-modal-header>
+  <c-modal-body>
+    <form cForm [formGroup]="campusForm">
+      <div class="mb-3">
+        <label cLabel>Descripción:</label>
+        <input cFormControl formControlName="descripcion" />
+      </div>
+      <c-form-check [switch]="true" class="mb-3">
+        <input cFormCheckInput type="checkbox" formControlName="estado"/>
+        <label cFormCheckLabel>Default switch checkbox input</label>
+      </c-form-check>
+    </form>
+  </c-modal-body>
+  <c-modal-footer>
+    <button [cModalToggle]="createCampusModal.id" cButton color="secondary">
+      Cerrar
+    </button>
+    <button cButton color="primary">Guardar</button>
+  </c-modal-footer>
+</c-modal>

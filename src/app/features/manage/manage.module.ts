@@ -10,6 +10,11 @@ import { UserCreatePageComponent } from './users/containers/user-create-page/use
 import { SubsystemCreateComponent } from './subsystem/components/subsystem-create/subsystem-create.component';
 import { SubsystemCreatePageComponent } from './subsystem/containers/subsystem-create-page/subsystem-create-page.component';
 
+import { CardModule, ButtonModule, GridModule, FormModule } from '@coreui/angular-pro';
+import { IconModule } from '@coreui/icons-angular';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ModalModule } from '@coreui/angular-pro';
+
 const routes: Routes = [
   {
     path: '',
@@ -69,7 +74,15 @@ const routes: Routes = [
   ],
   imports: [
     CommonModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    CardModule,
+    ButtonModule,
+    GridModule,
+    IconModule,
+    FormModule,
+    FormsModule,
+    ModalModule,
+    ReactiveFormsModule
   ]
 })
 export class ManageModule { }

@@ -1,1 +1,61 @@
-<p>concession-create works!</p>
+<c-col xs="12">
+  <c-card class="mb-4">
+    <c-card-header class="card-header">
+      <div class="card-header__title">
+        <c-icon name="cil-building" size="lg"></c-icon>
+        <h5>Concesiones</h5>
+      </div>
+      <button cButton color="success" [cModalToggle]="createConcesionModal.id">
+        <c-icon name="cil-plus"></c-icon>
+        Añadir concesión
+      </button>
+    </c-card-header>
+    <c-card-body>
+
+    </c-card-body>
+  </c-card>
+</c-col>
+
+<!-- modal creacion de concesión-->
+<c-modal #createConcesionModal alignment="center" id="createConcesionModal" size="lg">
+  <c-modal-header>
+    <h5 cModalTitle>Nueva concesión</h5>
+    <button [cModalToggle]="createConcesionModal.id" cButtonClose></button>
+  </c-modal-header>
+  <c-modal-body>
+    <form cForm [formGroup]="concessionForm" class="row g-3">
+        <c-col [md]="6">
+          <label cLabel>Nombre:</label>
+          <input cFormControl formControlName="nombre" />
+        </c-col>
+        <c-col [md]="6">
+          <label cLabel>Dirección:</label>
+          <input cFormControl formControlName="direccion" />
+        </c-col>
+        <c-col [md]="6">
+          <label cLabel>Teléfono:</label>
+          <input cFormControl formControlName="telefono_contacto" />
+        </c-col>
+        <c-col [md]="6">
+          <label cLabel>Correo electrónico:</label>
+          <input cFormControl formControlName="correo_e" />
+        </c-col>         
+        <c-col [xs]="12">
+          <label cLabel>Url:</label>
+          <input cFormControl formControlName="url" />
+        </c-col>
+        <c-col [xs]="12">
+          <c-form-check [switch]="true" class="mb-3">
+            <input cFormCheckInput type="checkbox" formControlName="estado"/>
+            <label cFormCheckLabel>Default switch checkbox input</label>
+          </c-form-check>
+        </c-col>    
+    </form>
+  </c-modal-body>
+  <c-modal-footer>
+    <button [cModalToggle]="createConcesionModal.id" cButton color="secondary">
+      Cerrar
+    </button>
+    <button cButton color="primary" (click)="saveForm(concessionForm.value)">Guardar</button>
+  </c-modal-footer>
+</c-modal>

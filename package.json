@@ -41,6 +41,7 @@
     "@ngx-translate/core": "^14.0.0",
     "@ngx-translate/http-loader": "^7.0.0",
     "chart.js": "^3.6.1",
+    "cors": "^2.8.5",
     "date-fns": "^2.27.0",
     "ngx-perfect-scrollbar": "^10.1.1",
     "rxjs": "~7.5.0",

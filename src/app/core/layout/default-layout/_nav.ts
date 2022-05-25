@@ -17,7 +17,8 @@ export const navItems: INavData[] = [
     children: [
       {
         name: 'Concesión',
-        url: '/manage/concession'
+        url: '/manage/concession',
+        
       },
       {
         name: 'Sede',

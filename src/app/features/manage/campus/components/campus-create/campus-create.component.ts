@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-campus-create',
@@ -6,10 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./campus-create.component.scss']
 })
 export class CampusCreateComponent implements OnInit {
+  public campusForm: FormGroup = this.fb.group({
+    descripcion: ['', Validators.required],
+    estado: [false, [Validators.required]]
+  });
 
-  constructor() { }
+
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
   }
+
 
 }
