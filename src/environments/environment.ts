@@ -4,9 +4,9 @@
 
 export const environment = {
   production: false,
-  endpoint: 'http://localhost:3000',
+  endpoint: 'http://localhost:3100',
   baseUrl: () => {
-    return 'http://179.50.79.11:3000';
+    return 'http://179.50.79.11:3100';
   } 
 };
 

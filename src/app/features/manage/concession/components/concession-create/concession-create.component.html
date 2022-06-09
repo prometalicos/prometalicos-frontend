@@ -1,3 +1,4 @@
+<c-toaster class="p-3" position="fixed" [placement]="placement"></c-toaster>
 <c-col xs="12">
   <c-card class="mb-4">
     <c-card-header class="card-header">
@@ -5,57 +6,98 @@
         <c-icon name="cil-building" size="lg"></c-icon>
         <h5>Concesiones</h5>
       </div>
-      <button cButton color="success" [cModalToggle]="createConcesionModal.id">
+      <button cButton color="success" (click)="openConcessionModal(false)">
         <c-icon name="cil-plus"></c-icon>
         Añadir concesión
       </button>
     </c-card-header>
     <c-card-body>
-
+      <app-general-table [columns]="columns" [data]="concessionsList" (onEdition)="openConcessionModal(true, $event)"
+      (onDelete)="elementDelete($event)">
+      </app-general-table>
     </c-card-body>
   </c-card>
 </c-col>
 
 <!-- modal creacion de concesión-->
-<c-modal #createConcesionModal alignment="center" id="createConcesionModal" size="lg">
+<c-modal #createConcesionModal alignment="center" id="createConcesionModal" size="lg" 
+[visible]="visible" (visibleChange)="handleLiveDemoChange($event)">
   <c-modal-header>
-    <h5 cModalTitle>Nueva concesión</h5>
+    <h5 cModalTitle *ngIf="!isEdition">Nueva concesión</h5>
+    <h5 cModalTitle *ngIf="isEdition">Editar concesión</h5>
     <button [cModalToggle]="createConcesionModal.id" cButtonClose></button>
   </c-modal-header>
   <c-modal-body>
-    <form cForm [formGroup]="concessionForm" class="row g-3">
-        <c-col [md]="6">
-          <label cLabel>Nombre:</label>
-          <input cFormControl formControlName="nombre" />
-        </c-col>
-        <c-col [md]="6">
-          <label cLabel>Dirección:</label>
-          <input cFormControl formControlName="direccion" />
-        </c-col>
-        <c-col [md]="6">
-          <label cLabel>Teléfono:</label>
-          <input cFormControl formControlName="telefono_contacto" />
-        </c-col>
-        <c-col [md]="6">
-          <label cLabel>Correo electrónico:</label>
-          <input cFormControl formControlName="correo_e" />
-        </c-col>         
-        <c-col [xs]="12">
-          <label cLabel>Url:</label>
-          <input cFormControl formControlName="url" />
-        </c-col>
-        <c-col [xs]="12">
-          <c-form-check [switch]="true" class="mb-3">
-            <input cFormCheckInput type="checkbox" formControlName="estado"/>
-            <label cFormCheckLabel>Default switch checkbox input</label>
-          </c-form-check>
-        </c-col>    
+    <form cForm [formGroup]="concessionForm" class="row g-3 needs-validation">
+      <c-col [md]="6">
+        <label cLabel>Nombre:</label>        
+          <input cFormControl formControlName="nombre" maxlength="128"/>
+          <c-alert color="danger" *ngIf="concessionForm.get('nombre').invalid && concessionForm.get('nombre').touched">{{getCorrectError(concessionForm.get('nombre'))}}</c-alert>
+      </c-col>
+      <c-col [md]="6">
+        <label cLabel>Dirección:</label>
+        <input cFormControl  formControlName="direccion" type="text" maxlength="128"/>
+        <c-alert color="danger" *ngIf="concessionForm.get('direccion').invalid && concessionForm.get('direccion').touched">{{getCorrectError(concessionForm.get('direccion'))}}</c-alert>
+      </c-col>
+      <c-col [md]="6">
+        <label cLabel>Teléfono:</label>
+        <input cFormControl formControlName="telefono_contacto" type="text" 
+        (keypress)="numberValidation($event)"/>
+        <c-alert color="danger" 
+        *ngIf="concessionForm.get('telefono_contacto').invalid
+        && concessionForm.get('telefono_contacto').touched && 
+        !concessionForm.get('telefono_contacto').hasError('minlength')">
+          {{getCorrectError(concessionForm.get('telefono_contacto'))}}
+        </c-alert>
+        <c-alert color="danger" 
+        *ngIf="concessionForm.get('telefono_contacto').hasError('minlength')
+        && concessionForm.get('telefono_contacto').touched">
+          Mínimo 10 caracteres
+        </c-alert>
+      </c-col>
+      <c-col [md]="6">
+        <label cLabel>Correo electrónico:</label>
+        <input cFormControl formControlName="correo_e" required/>
+        <c-alert color="danger" 
+        *ngIf="concessionForm.get('correo_e').invalid 
+        && concessionForm.get('correo_e').touched &&
+        !concessionForm.get('correo_e').hasError('pattern')">
+        {{getCorrectError(concessionForm.get('correo_e'))}}
+      </c-alert>
+      <c-alert color="danger" 
+        *ngIf="concessionForm.get('correo_e').hasError('pattern') 
+        && concessionForm.get('correo_e').touched">
+        Este correo no es válido
+      </c-alert>
+      </c-col>
+      <c-col [xs]="12">
+        <label cLabel>Url:</label>
+        <input cFormControl formControlName="url"/>
+        <c-alert color="danger" 
+        *ngIf="concessionForm.get('url').hasError('pattern')
+         && concessionForm.get('url').touched">
+        Esta no es una URL válida
+      </c-alert>
+      <c-alert color="danger" 
+        *ngIf="concessionForm.get('url').invalid
+         && concessionForm.get('url').touched &&
+         !concessionForm.get('url').hasError('pattern')">
+        {{getCorrectError(concessionForm.get('url'))}}
+      </c-alert>
+      </c-col>
+      <c-col [xs]="12">
+        <c-form-check [switch]="true" class="mb-3" sizing="xl">
+          <input cFormCheckInput type="checkbox" formControlName="estado" id="checkIsActive" [checked]="concessionForm.get('estado').value"/>
+          <label cFormCheckLabel *ngIf="concessionForm.get('estado').value === false" for="checkIsActive" class="mx-1"> Activar concesión</label>
+          <label cFormCheckLabel *ngIf="concessionForm.get('estado').value === true" for="checkIsActive" class="mx-1"> Desactivar concesión</label>
+        </c-form-check>
+      </c-col>
     </form>
   </c-modal-body>
   <c-modal-footer>
     <button [cModalToggle]="createConcesionModal.id" cButton color="secondary">
       Cerrar
     </button>
-    <button cButton color="primary" (click)="saveForm(concessionForm.value)">Guardar</button>
+    <button cButton color="primary" [disabled]="concessionForm.invalid" (click)="saveForm(concessionForm.value)">Guardar</button>
   </c-modal-footer>
 </c-modal>

@@ -10,10 +10,15 @@ import { UserCreatePageComponent } from './users/containers/user-create-page/use
 import { SubsystemCreateComponent } from './subsystem/components/subsystem-create/subsystem-create.component';
 import { SubsystemCreatePageComponent } from './subsystem/containers/subsystem-create-page/subsystem-create-page.component';
 
-import { CardModule, ButtonModule, GridModule, FormModule } from '@coreui/angular-pro';
+import { CardModule, ButtonModule, GridModule, FormModule, BadgeModule, AlertModule, TableModule, UtilitiesModule, CollapseModule, ToastComponent, ToastModule } from '@coreui/angular-pro';
 import { IconModule } from '@coreui/icons-angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ModalModule } from '@coreui/angular-pro';
+import { ModalModule, SmartTableModule } from '@coreui/angular-pro';
+import { GeneralTableComponent } from './general-table/general-table.component';
+import { SharedModule } from '@coreui/angular-pro';
+import { SharedFeaturesModule } from '../../shared-features/shared.module';
+import { AppToastModule } from '../../shared-components/toasters/toast/toast.module';
+
 
 const routes: Routes = [
   {
@@ -70,19 +75,28 @@ const routes: Routes = [
     UserCreatePageComponent,
     SubsystemCreateComponent,
     SubsystemCreatePageComponent,
-    
+    GeneralTableComponent
   ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
+    AlertModule,
     CardModule,
+    CollapseModule,
     ButtonModule,
     GridModule,
     IconModule,
     FormModule,
     FormsModule,
     ModalModule,
-    ReactiveFormsModule
+    BadgeModule,
+    SharedModule,
+    TableModule,
+    ReactiveFormsModule,
+    SmartTableModule,
+    UtilitiesModule,
+    ToastModule,
+    AppToastModule
   ]
 })
 export class ManageModule { }

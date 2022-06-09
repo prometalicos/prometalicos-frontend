@@ -1,4 +1,4 @@
-import { Observable } from 'rxjs';
+/* import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
@@ -68,7 +68,6 @@ export class HttpService {
 
   public doDelete<R>(serviceUrl: string, opts?: Options): Observable<R> {
     const ropts = this.createOptions(opts);
-
     return this.http.delete<R>(serviceUrl, ropts);
   }
 
@@ -81,4 +80,4 @@ export class HttpService {
 
     return this.http.get<T>(serviceUrl, options);
   }
-}
+} */

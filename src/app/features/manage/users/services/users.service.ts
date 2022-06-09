@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { User } from '../models/users.model';
-import { HttpService } from 'src/app/core/services/http.service';
+//import { HttpService } from 'src/app/core/services/http.service';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class UserService {
 
-  constructor(protected http: HttpService) { }
+  constructor(protected http: HttpClient) { }
 
-  public consultar() {
+  /* public consultar() {
     const baseUrl = environment.endpoint + '/usuarios';
     return this.http.doGet<User[]>(baseUrl);
   }
@@ -28,5 +29,5 @@ export class UserService {
   public eliminar(id: string) {
     return this.http.doDelete<boolean>(`${environment.endpoint}/usuarios/${id}`,
       this.http.optsName('eliminar usuario'));
-  }
+  } */
 }
