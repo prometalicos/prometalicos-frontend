@@ -32,6 +32,11 @@ const routes: Routes = [
         loadChildren: () =>
           import('./features/manage/manage.module').then((m) => m.ManageModule)
       },
+      {
+        path: 'subsystems',
+        loadChildren: () =>
+          import('./features/subsystems/subsystems.module').then((m) => m.SubsystemsModule)
+      },
     ]
   },
   { path: '**', component: NotFoundComponent }
