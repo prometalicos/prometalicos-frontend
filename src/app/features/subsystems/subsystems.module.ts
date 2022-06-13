@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { SizingComponent } from './components/sizing/sizing.component';
 import { SizingPageComponent } from './containers/sizing-page/sizing-page.component';
-import { UtilitiesModule, SharedModule, CardModule } from '@coreui/angular-pro';
+import { UtilitiesModule, SharedModule, CardModule, ButtonModule, GridModule, TableModule, SmartTableModule } from '@coreui/angular-pro';
 import { IconModule } from '@coreui/icons-angular';
 
 const routes: Routes = [
@@ -40,6 +40,10 @@ const routes: Routes = [
     SharedModule,
     IconModule,
     CardModule,
+    ButtonModule,
+    GridModule,
+    TableModule,
+    SmartTableModule,
   ]
 })
 export class SubsystemsModule { }

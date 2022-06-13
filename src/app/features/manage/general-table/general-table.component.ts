@@ -12,7 +12,7 @@ export class GeneralTableComponent implements OnInit {
   @Input() data: any[] = [];
   @Output() onEdition: EventEmitter<any> = new EventEmitter<any>();
   @Output() onDelete: EventEmitter<any> = new EventEmitter<any>();
-  
+
 
   public dataTable: any[] = this.data;
 

@@ -16,8 +16,8 @@ export class ConcessionCreatePageComponent implements OnInit {
   public concessionsList: Concession[] = [];
 
   constructor(private manageService: ManageService) { }
-  
-  
+
+
 
   ngOnInit(): void {
     this.getAllConcessions();
@@ -29,8 +29,8 @@ export class ConcessionCreatePageComponent implements OnInit {
         this.saveSuccess = true;
         this.getAllConcessions();
       }
-      }, (error) => {console.log(error)}
-      );
+    }, (error) => { console.log(error) }
+    );
   }
 
   public getAllConcessions() {
@@ -40,7 +40,7 @@ export class ConcessionCreatePageComponent implements OnInit {
   }
 
   public editConcession(concession: Concession) {
-    this.manageService.editConcession(concession).subscribe((res:any) => {
+    this.manageService.editConcession(concession).subscribe((res: any) => {
       if (res) {
         this.editSuccess = true;
         this.getAllConcessions();
@@ -49,7 +49,7 @@ export class ConcessionCreatePageComponent implements OnInit {
   }
 
   public deleteConcession(concession: Concession) {
-    this.manageService.deleteConcession(concession).subscribe((res:any) => {
+    this.manageService.deleteConcession(concession).subscribe((res: any) => {
       if (res) {
         this.deleteSuccess = true;
         this.getAllConcessions();

@@ -16,7 +16,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ModalModule, SmartTableModule } from '@coreui/angular-pro';
 import { GeneralTableComponent } from './general-table/general-table.component';
 import { SharedModule } from '@coreui/angular-pro';
-import { SharedFeaturesModule } from '../../shared-features/shared.module';
+import { SharedFeaturesModule } from '../../shared/shared.module';
 import { AppToastModule } from '../../shared-components/toasters/toast/toast.module';
 
 

@@ -1,43 +1,28 @@
-
-<c-smart-table
-[activePage]="1"
-[columnSorter]="true"
-[columns]="columns"
-[itemsPerPageSelect]="true"
-[itemsPerPage]="5"
-[items]="data"
-[sorterValue]="{ column: 'nombre', state: 'asc' }"
-[tableFilter]="true"
-[tableProps]="{ hover: true, striped: true, responsive: true }"
-cleaner
-header
-pagination
->
-<ng-template cTemplateId="tableData" let-columnName="columnName" let-item="item" let-tdContent="tdContent">
-  <td>
-    <ng-container [ngSwitch]="columnName">
-      <ng-container *ngSwitchCase="'estado'">
-        <c-badge [color]="getBadge(tdContent)">
-          {{tdContent === true ? 'Activa': 'Inactiva'}}
-        </c-badge>
+<c-smart-table [activePage]="1" [columnSorter]="true" [columns]="columns" [itemsPerPageSelect]="true" [itemsPerPage]="5"
+  [items]="data" [sorterValue]="{ column: 'nombre', state: 'asc' }" [tableFilter]="true"
+  [tableProps]="{ hover: true, striped: true, responsive: true }" cleaner header pagination>
+  <ng-template cTemplateId="tableData" let-columnName="columnName" let-item="item" let-tdContent="tdContent">
+    <td>
+      <ng-container [ngSwitch]="columnName">
+        <ng-container *ngSwitchCase="'estado'">
+          <c-badge [color]="getBadge(tdContent)">
+            {{tdContent === true ? 'Activa': 'Inactiva'}}
+          </c-badge>
+        </ng-container>
+        <ng-container *ngSwitchCase="'acciones'">
+          <div class="action-column">
+            <button cButton color="dark" variant="ghost" (click)="elementEdit(item)">
+              <c-icon name="cil-pencil" size="lg"></c-icon>
+            </button>
+            <button cButton color="dark" variant="ghost" (click)="elementDelete(item)">
+              <c-icon name="cil-trash" size="lg"></c-icon>
+            </button>
+          </div>
+        </ng-container>
+        <ng-container *ngSwitchDefault>
+          {{tdContent}}
+        </ng-container>
       </ng-container>
-      <ng-container *ngSwitchCase="'acciones'">
-        <div class="action-column">
-          <button cButton color="dark" variant="ghost" (click)="elementEdit(item)">
-            <c-icon name="cil-pencil" size="lg"></c-icon>
-          </button>
-          <button cButton color="dark" variant="ghost" (click)="elementDelete(item)">
-            <c-icon name="cil-trash" size="lg"></c-icon>
-          </button>  
-        </div>               
-      </ng-container>
-      <ng-container *ngSwitchDefault>
-        {{tdContent}}
-      </ng-container>
-    </ng-container>
-  </td>
-</ng-template>
+    </td>
+  </ng-template>
 </c-smart-table>
-
-
-

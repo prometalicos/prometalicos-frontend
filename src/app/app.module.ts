@@ -51,7 +51,7 @@ import { IconModule, IconSetModule, IconSetService } from '@coreui/icons-angular
 import { AuthGuard } from './core/guards/auth-guard.guard';
 import { NotFoundComponent } from './features/not-found-page/components/not-found/not-found.component';
 import { SmartTableModule, ToastModule } from '@coreui/angular-pro';
-import { SharedFeaturesModule } from './shared-features/shared.module';
+import { SharedFeaturesModule } from './shared/shared.module';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,

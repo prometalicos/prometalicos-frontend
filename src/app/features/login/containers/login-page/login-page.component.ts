@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../../../shared-features/auth.service';
+import { AuthService } from '../../../../shared/services/auth.service';
 import { LoginService } from '../../services/login.service';
 import { INavData } from '@coreui/angular-pro';
 import { first, Observable } from 'rxjs';
