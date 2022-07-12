@@ -22,15 +22,14 @@ export class LoginPageComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-  this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/dashboard';
-  this.queryParams = { ...this.route.snapshot.queryParams }
-  
+  this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/subsystems/sizing';
+  this.queryParams = { ...this.route.snapshot.queryParams }  
   }
 
 
   public login(credentials: string){
+    debugger
     this.loginService.login(credentials).subscribe((res: any) => {
-      console.log(res);
       this.router.navigate([this.returnUrl], { queryParams: this.queryParams });
     })
   }

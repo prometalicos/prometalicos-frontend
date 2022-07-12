@@ -1,39 +1,99 @@
 <c-row>
-    <c-col [sm]="4">
-      <c-card class="mb-4">
-        <c-card-body>
-          <h5 cCardTitle>Card title</h5>
-          <p cCardText>
-            Some quick example text to build on the card title and make up the bulk of the card's content.
-          </p>
+  <c-col [sm]="6" [md]="4">
+    <c-card class="mb-3">
+      <c-row class="g-0">
+        <c-col [md]="12" [sm]="12">
+          <div class="content-card-img">
+            <c-icon name="cil-truck" width="150px"></c-icon>
+          </div>                    
+        </c-col>
+        <c-card-body cCol [md]="12" [sm]="12">
+            <div class="card-info">
+              <h6>Fecha/Hora:</h6>
+              <p cCardText>28/06/2022 17:45</p>
+            </div>
+            <div class="card-info">
+              <h6>Tipo de vehiculo:</h6>
+              <p cCardText>Truck</p>
+            </div>
+            <div class="card-info">
+              <h6>Ancho:</h6>
+              <p cCardText>3000</p>
+            </div>
+            <div class="card-info">
+              <h6>Largo:</h6>
+              <p cCardText>3000</p>
+            </div>
+            <div class="card-info">
+              <h6>Alto:</h6>
+              <p cCardText>3000</p>
+            </div>      
         </c-card-body>
-      </c-card>
-    </c-col>
-    <c-col [sm]="4">
-        <c-card class="mb-4">
-          <c-card-body>
-            <h5 cCardTitle>Card title</h5>
-            <p cCardText>
-              Some quick example text to build on the card title and make up the bulk of the card's content.
-            </p>
-          </c-card-body>
-        </c-card>
+      </c-row>
+    </c-card>
+
+    <c-row class="g-0">
+      <c-col [md]="12" [sm]="12" >
+        <div class="placa" style="background-image: url(./assets/img/brand/placa.png);">
+          <br>
+          <div class="text">
+            <h1 class="text-muted">AB 123 CD</h1>
+          </div>
+        </div>                    
       </c-col>
-    <c-col [sm]="4">
-      <c-card class="mb-4">
-        <c-card-body>
-          <h5 cCardTitle>Card title</h5>
-          <p cCardText>
-            Some quick example text to build on the card title and make up the bulk of the card's content.
-          </p>
-        </c-card-body>
-      </c-card>
-    </c-col>
-  </c-row>
-  <c-row>
-    <c-col [sm]="12">
-        <c-card class="mb-4">
-          
-          </c-card>
-    </c-col>
-  </c-row>
+    </c-row>
+    
+  </c-col>
+  
+  <c-col [sm]="6" [md]="4" >
+    <c-card class="mb-3 mt-3" >
+      <c-card-body>
+        <h5 cCardTitle>Card title</h5>
+        <p cCardText>
+          Some quick example text to build on the card title and make up the bulk of the card's content.
+        </p>
+      </c-card-body>
+    </c-card>
+  </c-col>
+  <c-col [sm]="12" [md]="4" class="col-video">
+    <div class="embed-responsive embed-responsive-21by9 responsive-video">
+      <iframe class="embed-responsive-item" src="http://172.19.150.11/api/mjpegvideo.cgi?Resolution=640x480&Quality=60"
+        height="100%" width="100%"></iframe>
+    </div>
+  </c-col>
+</c-row>
+<br>
+<c-row>
+  <c-col [sm]="12">
+    <c-card class="mb-4">
+      <c-card-body>
+        <c-smart-table [activePage]="1" [columnSorter]="true" [columns]="columns" [itemsPerPageSelect]="true"
+          [itemsPerPage]="5" [items]="dimensionList" [sorterValue]="{ column: 'name', state: 'asc' }"
+          [tableFilter]="true" [tableProps]="{ hover: true, striped: true, responsive: true }" cleaner clickableRows
+          footer header pagination>
+          <ng-template cTemplateId="tableData" let-columnName="columnName" let-item="item" let-tdContent="tdContent">
+            <td>
+              <ng-container [ngSwitch]="columnName">
+                <ng-container *ngSwitchCase="'status'">
+                  <c-badge [color]="getBadge(tdContent)">
+                    {{(item[columnName])}}
+                  </c-badge>
+                </ng-container>
+                <ng-container *ngSwitchCase="'show'" class="py-2">
+                  <button (click)="toggleDetails(item._id)" cButton color="primary" size="sm" variant="outline">
+                    Show
+                  </button>
+                </ng-container>
+                <ng-container *ngSwitchDefault>
+                  {{tdContent}}
+                </ng-container>
+              </ng-container>
+            </td>
+          </ng-template>
+        </c-smart-table>
+
+      </c-card-body>
+
+    </c-card>
+  </c-col>
+</c-row>

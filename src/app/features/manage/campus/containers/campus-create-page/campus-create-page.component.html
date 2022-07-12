@@ -1,1 +1,10 @@
-<app-campus-create></app-campus-create>
+<app-campus-create
+(saveCampus)="saveCampus($event)"
+(editCampus)="editCampus($event)"
+(deleteCampus)="deleteCampus($event)"
+[saveSuccess]="saveSuccess"
+[editSuccess]="editSuccess"
+[deleteSuccess]="deleteSuccess"
+[campusList]="campusList"
+[concessionsList]="concessionsList">
+</app-campus-create>

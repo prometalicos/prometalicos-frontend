@@ -28,8 +28,8 @@ export class ConcessionCreateComponent implements OnInit {
     { key: 'estado', _style: { width: '10%' } },
     { key: 'acciones', label: 'Acciones', _style: { width: '15%' }, filter: false, sorter: false }
   ];
-  public dataTable: any[] = [];
-  public concessionForm: FormGroup = this.fb.group({});
+
+  public concessionForm: FormGroup;
   public isEdition: boolean = false;
   public visible = false;
   public placement = ToasterPlacement.TopEnd;
@@ -51,7 +51,10 @@ export class ConcessionCreateComponent implements OnInit {
       this.addToast('Concesión editada con éxito', 'success');
     }
     if (this.deleteSuccess) this.addToast('Concesión eliminada con éxito', 'success');
-    if (this.saveSuccess) this.addToast('Concesión agregada con éxito', 'success')
+    if (this.saveSuccess) {
+      this.visible = false;
+      this.addToast('Concesión agregada con éxito', 'success');
+    }
   }
 
   public addToast(title: string, color: string) {
@@ -66,7 +69,7 @@ export class ConcessionCreateComponent implements OnInit {
   }
 
 
-  public initForm(item?: any) {
+  public initForm(item?: Concession) {
     this.concessionForm = this.fb.group({
       concesion_id: [item && item.concesion_id || null],
       nombre: [item && item.nombre || '', [Validators.required, this.uniqueName.bind(this)]],
@@ -88,7 +91,6 @@ export class ConcessionCreateComponent implements OnInit {
   }
 
   public saveForm(concession: Concession) {
-    concession.estado = concession.estado === true ? 1 : 0;
     if (this.isEdition) this.editConcession.emit(concession);
     else this.saveConcession.emit(concession);
   }

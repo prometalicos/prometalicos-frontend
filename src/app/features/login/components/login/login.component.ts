@@ -10,8 +10,8 @@ export class LoginComponent implements OnInit {
   @Output() onSubmitCredentials: EventEmitter<any> = new EventEmitter<any>();
 
   public loginForm: FormGroup = this.fb.group({
-    username: ['', Validators.required],
-    password: ['', [Validators.required]]
+    nombre: ['', Validators.required],
+    contrasena: ['', [Validators.required]]
   });
 
   constructor(

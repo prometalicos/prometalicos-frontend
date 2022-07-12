@@ -1,3 +1,4 @@
+<c-toaster class="p-3" position="fixed" [placement]="placement"></c-toaster>
 <c-col xs="12">
   <c-card class="mb-4">
     <c-card-header class="card-header">
@@ -5,39 +6,60 @@
         <c-icon name="cil-house" size="lg"></c-icon>
         <h5>Sedes</h5>
       </div>
-      <button cButton color="success" [cModalToggle]="createCampusModal.id">
+      <button cButton color="success" (click)="openCampusModal(false)">
         <c-icon name="cil-plus"></c-icon>
         Añadir sede
       </button>
     </c-card-header>
     <c-card-body>
-
+      <app-general-table [columns]="columns" [data]="campusList" (onEdition)="openCampusModal(true, $event)"
+      (onDelete)="elementDelete($event)">
+    </app-general-table>
     </c-card-body>
   </c-card>
 </c-col>
 
 <!-- modal creacion de sede -->
-<c-modal #createCampusModal alignment="center" id="createCampusModal">
+<c-modal #createCampusModal alignment="center" id="createCampusModal" size="lg" [visible]="visible" (visibleChange)="handleLiveDemoChange($event)">
   <c-modal-header>
-    <h5 cModalTitle>Nueva sede</h5>
+    <h5 cModalTitle *ngIf="!isEdition">Nueva sede</h5>
+    <h5 cModalTitle *ngIf="isEdition">Editar sede</h5>
     <button [cModalToggle]="createCampusModal.id" cButtonClose></button>
   </c-modal-header>
   <c-modal-body>
-    <form cForm [formGroup]="campusForm">
-      <div class="mb-3">
-        <label cLabel>Descripción:</label>
-        <input cFormControl formControlName="descripcion" />
-      </div>
-      <c-form-check [switch]="true" class="mb-3">
-        <input cFormCheckInput type="checkbox" formControlName="estado"/>
-        <label cFormCheckLabel>Default switch checkbox input</label>
-      </c-form-check>
+    <form cForm [formGroup]="campusForm" class="row g-3 needs-validation">
+      <c-col [md]="6">
+        <label cLabel>Nombre:</label>
+        <input cFormControl formControlName="nombre" maxlength="128" />
+        <c-alert color="danger" *ngIf="campusForm.get('nombre').invalid && campusForm.get('nombre').touched">
+          {{getCorrectError(campusForm.get('nombre'))}}</c-alert>
+      </c-col>
+      <c-col [md]="6">
+        <label cLabel>Concesión:</label>
+        <select class="form-control" cSelect cFormControl formControlName="concesion_nombre" (change)="changeConcession($event)">
+          <option [selected]="concesion.nombre === campusForm.get('concesion_nombre').value" *ngFor="let concesion of concessionSelect" 
+          value={{concesion.nombre}}>{{concesion.nombre}}</option>
+        </select>
+        <c-alert color="danger"
+          *ngIf="campusForm.get('concesion_nombre').invalid && campusForm.get('concesion_nombre').touched">
+          {{getCorrectError(campusForm.get('concesion_nombre'))}}</c-alert>
+      </c-col>
+      <c-col [xs]="12">
+        <c-form-check [switch]="true" class="mb-3" sizing="xl">
+          <input cFormCheckInput type="checkbox" formControlName="estado" id="checkIsActive"
+            [checked]="campusForm.get('estado').value" />
+          <label cFormCheckLabel *ngIf="campusForm.get('estado').value === false" for="checkIsActive" class="mx-1">
+            Activar sede</label>
+          <label cFormCheckLabel *ngIf="campusForm.get('estado').value === true" for="checkIsActive" class="mx-1">
+            Desactivar sede</label>
+        </c-form-check>
+      </c-col>
     </form>
   </c-modal-body>
   <c-modal-footer>
     <button [cModalToggle]="createCampusModal.id" cButton color="secondary">
       Cerrar
     </button>
-    <button cButton color="primary">Guardar</button>
+    <button cButton color="primary" [disabled]="campusForm.invalid" (click)="saveForm(campusForm.value)">Guardar</button>
   </c-modal-footer>
 </c-modal>

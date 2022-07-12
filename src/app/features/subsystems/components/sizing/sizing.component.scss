@@ -1,0 +1,39 @@
+.responsive-video {
+  overflow: hidden;
+  height: 100%;
+  width: 100%
+}
+
+.col-video {
+  height: 500px;
+}
+
+.card-info {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.content-card-img {
+  width: 100%;
+  height: 100%;
+  padding: 5px;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.placa {
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+
+  .text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+  }
+}
