@@ -4,6 +4,9 @@ import { environment } from '../../../../environments/environment';
 import { Concession } from '../models/concession.model';
 import { HttpClient } from '@angular/common/http';
 import { Campus } from '../models/campus.model';
+import { Subsystem } from '../models/subsystem.model';
+import { Observable } from 'rxjs';
+import { SubsystemCreateComponent } from '../subsystem/components/subsystem-create/subsystem-create.component';
 
 @Injectable({
   providedIn: 'root'
@@ -14,16 +17,19 @@ export class ManageService {
   constructor(private http: HttpClient) { }
 
   public addConcession(concession: Concession) {
+    
     return this.http.post(`${this.baseUrl}/concesion`, concession);
   }
 
   public getConcessions() {
+    console.log(this.http.get(`${this.baseUrl}/concesion/get`))
     return this.http.get(`${this.baseUrl}/concesion/get`);
   }
 
   public editConcession(concession: Concession) {
-    debugger
+    
     return this.http.put(`${this.baseUrl}/concesion`, concession)
+    
   }
 
   public deleteConcession(concession: Concession) {
@@ -36,7 +42,7 @@ export class ManageService {
   }
 
   public addCampus(campus: Campus) {
-    debugger
+    
     return this.http.post(`${this.baseUrl}/sede`, campus);
   }
 
@@ -45,8 +51,27 @@ export class ManageService {
   }
 
   public deleteCampus(campus: Campus) {
-    debugger
+    
     const httpOptions: { body: { sede_id: string } } = { body: { sede_id: campus.sede_id }};
     return this.http.delete(`${this.baseUrl}/sede`, httpOptions);
+  }
+
+  public getSubsystem() {
+    //return this.http.get(`${this.baseUrl}/subsystem/get`);
+  }
+
+  public addSubsystem(subsystem: Subsystem) {
+    
+    return this.http.post(`${this.baseUrl}/subsystem`, subsystem);
+  }
+
+  public editSubsystem(subsystem: Subsystem) {
+    return this.http.put(`${this.baseUrl}/subsystem`, subsystem)
+  }
+
+  public deleteSubsystem(subsystem: Subsystem) {
+    
+    const httpOptions: { body: { subsystem_id: string } } = { body: { subsystem_id: subsystem.sede_id }};
+    return this.http.delete(`${this.baseUrl}/subsystem`, httpOptions);
   }
 }

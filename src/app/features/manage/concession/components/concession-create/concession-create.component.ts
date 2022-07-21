@@ -20,7 +20,7 @@ export class ConcessionCreateComponent implements OnInit {
   @Output() deleteConcession: EventEmitter<Concession> = new EventEmitter<Concession>();
 
   public columns = [
-    { key: 'nombre', _style: { width: '20%' } },
+    { key: 'nombre_concesion', _style: { width: '20%' } },
     { key: 'direccion', _style: { width: '15%' } },
     { key: 'telefono_contacto', label: 'Teléfono', _style: { width: '15%' } },
     { key: 'correo_e', label: 'Correo', _style: { width: '15%' } },
@@ -52,6 +52,7 @@ export class ConcessionCreateComponent implements OnInit {
     }
     if (this.deleteSuccess) this.addToast('Concesión eliminada con éxito', 'success');
     if (this.saveSuccess) {
+      
       this.visible = false;
       this.addToast('Concesión agregada con éxito', 'success');
     }
@@ -72,7 +73,7 @@ export class ConcessionCreateComponent implements OnInit {
   public initForm(item?: Concession) {
     this.concessionForm = this.fb.group({
       concesion_id: [item && item.concesion_id || null],
-      nombre: [item && item.nombre || '', [Validators.required, this.uniqueName.bind(this)]],
+      nombre_concesion: [item && item.nombre_concesion || '', [Validators.required, this.uniqueName.bind(this)]],
       direccion: [item && item.direccion || '', [Validators.required]],
       telefono_contacto: [item && item.telefono_contacto || '', [Validators.required, Validators.minLength(10), Validators.maxLength(64)]],
       correo_e: [item && item.correo_e || '', [Validators.required, Validators.email, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
@@ -85,13 +86,15 @@ export class ConcessionCreateComponent implements OnInit {
     const idControlParent = control.parent && control.parent.value;
     const name = control.value;
     if (name && idControlParent) {
-      if (this.concessionsList.some(cons => cons.nombre.toLowerCase() === name.toLowerCase() && cons.concesion_id !== idControlParent.concesion_id)) return { duplicated: true }
+      if (this.concessionsList.some(cons => cons.nombre_concesion.toLowerCase() === name.toLowerCase() && cons.concesion_id !== idControlParent.concesion_id)) return { duplicated: true }
       return true;
     }
   }
 
   public saveForm(concession: Concession) {
+    
     if (this.isEdition) this.editConcession.emit(concession);
+    
     else this.saveConcession.emit(concession);
   }
 

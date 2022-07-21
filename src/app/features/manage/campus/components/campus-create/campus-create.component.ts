@@ -21,7 +21,7 @@ export class CampusCreateComponent implements OnInit {
   @Output() deleteCampus: EventEmitter<Campus> = new EventEmitter<Campus>();
 
   public columns = [
-    { key: 'nombre', _style: { width: '20%' } },
+    { key: 'nombre_sede', _style: { width: '20%' } },
     { key: 'concesion_nombre', label: 'Concesión', _style: { width: '20%' } },
     { key: 'estado', _style: { width: '10%' } },
     { key: 'acciones', label: 'Acciones', _style: { width: '15%' }, filter: false, sorter: false }
@@ -68,7 +68,7 @@ export class CampusCreateComponent implements OnInit {
   public initForm(item?: Campus) {
     this.campusForm = this.fb.group({
       sede_id: [item && item.sede_id || null],
-      nombre: [item && item.nombre || '',[ Validators.required]],
+      nombre_sede: [item && item.nombre_sede || '',[ Validators.required]],
       estado: [item && item.estado || false, [Validators.required]],
       concesion_nombre: [item && item.concesion_nombre || null, [Validators.required]],
       concesion_id: [item && item.concesion_id || null]
@@ -95,7 +95,7 @@ export class CampusCreateComponent implements OnInit {
   }
 
   public changeConcession(e) {
-    const cencessionSelected = this.concessionSelect.find(concession => concession.nombre === e.target.value)
+    const cencessionSelected = this.concessionSelect.find(concession => concession.nombre_concesion === e.target.value)
     this.campusForm.get('concesion_id').setValue(cencessionSelected.concesion_id);
   }
 

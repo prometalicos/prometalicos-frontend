@@ -23,21 +23,23 @@ export class CampusCreatePageComponent implements OnInit {
   }
 
   public getAllCampus() {
+    
     this.manageService.getCampus().subscribe((res: any) => {      
-      this.campusList = res.rows;
+      this.campusList = res.data;
     })
   }
 
   public getAllConcessions() {
+    
     this.manageService.getConcessions().subscribe((res: any) => {
-      this.concessionsList = res.rows;
+      this.concessionsList = res.data;
     })
   }
 
   public saveCampus(campus: Campus) {
     this.manageService.addCampus(campus).subscribe((res) => {
       if (res) {
-        debugger
+        
         this.saveSuccess = true;
         this.getAllCampus();
       }
@@ -46,6 +48,8 @@ export class CampusCreatePageComponent implements OnInit {
 
   public editCampus(campus: Campus) {
     this.manageService.editCampus(campus).subscribe((res: any) => {
+      this.editSuccess = true;
+        this.getAllCampus();
       if (res) {
         this.editSuccess = true;
         this.getAllCampus();

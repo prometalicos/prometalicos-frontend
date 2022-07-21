@@ -28,7 +28,7 @@ export class LoginPageComponent implements OnInit {
 
 
   public login(credentials: string){
-    debugger
+    
     this.loginService.login(credentials).subscribe((res: any) => {
       this.router.navigate([this.returnUrl], { queryParams: this.queryParams });
     })

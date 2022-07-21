@@ -20,10 +20,12 @@ export class ConcessionCreatePageComponent implements OnInit {
 
 
   ngOnInit(): void {
+    
     this.getAllConcessions();
   }
 
   public saveConcession(concession: Concession) {
+    
     this.manageService.addConcession(concession).subscribe((res) => {
       if (res) {
         this.saveSuccess = true;
@@ -33,24 +35,31 @@ export class ConcessionCreatePageComponent implements OnInit {
   }
 
   public getAllConcessions() {
+    
     this.manageService.getConcessions().subscribe((res: any) => {
-      this.concessionsList = res.rows;
+      
+      this.concessionsList = res.data;
+      
     })
   }
 
   public editConcession(concession: Concession) {
-    this.manageService.editConcession(concession).subscribe((res: any) => {
-      debugger
-      if (res) {
-        debugger
-        this.editSuccess = true;
-        this.getAllConcessions();
+    
+    this.manageService.editConcession(concession).subscribe((respuestaa: any) => {
+      console.log(respuestaa)
+      
+
+      if (respuestaa == null) {
+      this.editSuccess = true;
+      this.getAllConcessions();
+        
       }
     });
   }
 
   public deleteConcession(concession: Concession) {
     this.manageService.deleteConcession(concession).subscribe((res: any) => {
+      
       if (res) {
         this.deleteSuccess = true;
         this.getAllConcessions();

@@ -31,9 +31,9 @@
     <form cForm [formGroup]="concessionForm" class="row g-3 needs-validation">
       <c-col [md]="6">
         <label cLabel>Nombre:</label>
-        <input cFormControl formControlName="nombre" maxlength="128" />
-        <c-alert color="danger" *ngIf="concessionForm.get('nombre').invalid && concessionForm.get('nombre').touched">
-          {{getCorrectError(concessionForm.get('nombre'))}}</c-alert>
+        <input cFormControl formControlName="nombre_concesion" maxlength="128" />
+        <c-alert color="danger" *ngIf="concessionForm.get('nombre_concesion').invalid && concessionForm.get('nombre_concesion').touched">
+          {{getCorrectError(concessionForm.get('nombre_concesion'))}}</c-alert>
       </c-col>
       <c-col [md]="6">
         <label cLabel>Dirección:</label>
