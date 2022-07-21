@@ -10,7 +10,7 @@
         <c-card-body cCol [md]="12" [sm]="12">
             <div class="card-info">
               <h6>Fecha/Hora:</h6>
-              <p cCardText>28/06/2022 17:45</p>
+              <p cCardText>{{sizingCurrent?.fecha_hora | date:"dd/MM/yyyy hh:mm:ss a":"+0000"}}</p>
             </div>
             <div class="card-info">
               <h6>Tipo de vehiculo:</h6>
@@ -18,31 +18,34 @@
             </div>
             <div class="card-info">
               <h6>Ancho:</h6>
-              <p cCardText>3000</p>
+              <p cCardText>{{sizingCurrent?.ancho}}</p>
             </div>
             <div class="card-info">
               <h6>Largo:</h6>
-              <p cCardText>3000</p>
+              <p cCardText>{{sizingCurrent?.largo}}</p>
             </div>
             <div class="card-info">
               <h6>Alto:</h6>
-              <p cCardText>3000</p>
+              <p cCardText>{{sizingCurrent?.alto}}</p>
             </div>      
         </c-card-body>
       </c-row>
     </c-card>
 
-    <c-row class="g-0">
-      <c-col [md]="12" [sm]="12" >
-        <div class="placa" style="background-image: url(./assets/img/brand/placa.png);">
-          <br>
-          <div class="text">
-            <h1 class="text-muted">AB 123 CD</h1>
-          </div>
-        </div>                    
-      </c-col>
-    </c-row>
-    
+    <c-card class="mb-3">
+      <c-card-body>
+        <c-row class="g-0">
+          <c-col [md]="12" [sm]="12" >
+            <div class="placa" style="background-image: url(./assets/img/brand/placa.png);">
+              <br>
+              <div class="text">
+                <h1 class="text-muted">{{sizingCurrent?.placa}}</h1>
+              </div>
+            </div>                    
+          </c-col>
+        </c-row>
+      </c-card-body>     
+    </c-card>   
   </c-col>
   
   <c-col [sm]="6" [md]="4" >
@@ -68,16 +71,14 @@
     <c-card class="mb-4">
       <c-card-body>
         <c-smart-table [activePage]="1" [columnSorter]="true" [columns]="columns" [itemsPerPageSelect]="true"
-          [itemsPerPage]="5" [items]="dimensionList" [sorterValue]="{ column: 'name', state: 'asc' }"
+          [itemsPerPage]="5" [items]="dataSizingHistory" [sorterValue]="{ column: 'name', state: 'asc' }"
           [tableFilter]="true" [tableProps]="{ hover: true, striped: true, responsive: true }" cleaner clickableRows
           footer header pagination>
           <ng-template cTemplateId="tableData" let-columnName="columnName" let-item="item" let-tdContent="tdContent">
             <td>
               <ng-container [ngSwitch]="columnName">
-                <ng-container *ngSwitchCase="'status'">
-                  <c-badge [color]="getBadge(tdContent)">
-                    {{(item[columnName])}}
-                  </c-badge>
+                <ng-container *ngSwitchCase="'fecha_hora'">
+                  {{(item[columnName]) | date:"dd/MM/yyyy hh:mm:ss a":"+0000"}}
                 </ng-container>
                 <ng-container *ngSwitchCase="'show'" class="py-2">
                   <button (click)="toggleDetails(item._id)" cButton color="primary" size="sm" variant="outline">

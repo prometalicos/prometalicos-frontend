@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   endpoint: 'http://localhost:3100',
   baseUrl: () => {
-    return 'http://179.50.79.11:3100';
+    return 'http://172.19.150.9:3100';
   } 
 };
 

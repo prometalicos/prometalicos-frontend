@@ -40,9 +40,7 @@ export class ConcessionCreatePageComponent implements OnInit {
 
   public editConcession(concession: Concession) {
     this.manageService.editConcession(concession).subscribe((res: any) => {
-      debugger
       if (res) {
-        debugger
         this.editSuccess = true;
         this.getAllConcessions();
       }

@@ -16,7 +16,6 @@ export class LoginService {
   constructor(private http: HttpClient) { }
 
   public login(credentials: string) {
-    debugger
     //const encrypted: string = forge.util.encode64(this.isStatelessAuth ? credentials : this.publicKey.encrypt(credentials, 'RSA-OAEP'));
     return this.http.post(`${this.baseUrl}/user/val`, credentials);
   }

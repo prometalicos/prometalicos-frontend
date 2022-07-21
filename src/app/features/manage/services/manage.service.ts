@@ -22,7 +22,6 @@ export class ManageService {
   }
 
   public editConcession(concession: Concession) {
-    debugger
     return this.http.put(`${this.baseUrl}/concesion`, concession)
   }
 
@@ -36,7 +35,6 @@ export class ManageService {
   }
 
   public addCampus(campus: Campus) {
-    debugger
     return this.http.post(`${this.baseUrl}/sede`, campus);
   }
 
@@ -45,7 +43,6 @@ export class ManageService {
   }
 
   public deleteCampus(campus: Campus) {
-    debugger
     const httpOptions: { body: { sede_id: string } } = { body: { sede_id: campus.sede_id }};
     return this.http.delete(`${this.baseUrl}/sede`, httpOptions);
   }

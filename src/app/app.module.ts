@@ -44,7 +44,7 @@ import {
   SidebarModule,
   TabsModule,
   UtilitiesModule,
-   ModalModule
+  ModalModule
 } from '@coreui/angular-pro';
 
 import { IconModule, IconSetModule, IconSetService } from '@coreui/icons-angular';
@@ -52,6 +52,9 @@ import { AuthGuard } from './core/guards/auth-guard.guard';
 import { NotFoundComponent } from './features/not-found-page/components/not-found/not-found.component';
 import { SmartTableModule, ToastModule } from '@coreui/angular-pro';
 import { SharedFeaturesModule } from './shared/shared.module';
+
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+const config: SocketIoConfig = { url: '172.19.150.9:3100' };
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -97,6 +100,8 @@ const APP_CONTAINERS = [
     ModalModule,
     HttpClientModule,
     SmartTableModule,
+    SocketIoModule,
+    SocketIoModule.forRoot(config)
   ],
   providers: [
     IconSetService,

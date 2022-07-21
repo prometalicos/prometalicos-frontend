@@ -37,7 +37,6 @@ export class CampusCreatePageComponent implements OnInit {
   public saveCampus(campus: Campus) {
     this.manageService.addCampus(campus).subscribe((res) => {
       if (res) {
-        debugger
         this.saveSuccess = true;
         this.getAllCampus();
       }
