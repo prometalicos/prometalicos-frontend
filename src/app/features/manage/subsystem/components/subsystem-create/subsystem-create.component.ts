@@ -11,9 +11,9 @@ import { Component, Input, OnInit, EventEmitter, Output, ViewChild, OnChanges, S
   templateUrl: './subsystem-create.component.html',
   styleUrls: ['./subsystem-create.component.scss']
 })
-export class SubsystemCreateComponent implements OnInit, OnChanges{
+export class SubsystemCreateComponent implements OnInit, OnChanges {
 
-  @Input() subsystemList : Subsystem[] = [];
+  @Input() subsystemList: Subsystem[] = [];
   @Input() campusList: Campus[] = [];
   @Input() saveSuccess: boolean = false;
   @Input() deleteSuccess: boolean = false;
@@ -43,11 +43,7 @@ export class SubsystemCreateComponent implements OnInit, OnChanges{
   }
 
   ngOnChanges() {
-    
-    console.log("entre onchanges")
-    
     if (this.campusList) this.campusActiveSelect();
-    
     if (this.editSuccess) {
       this.visible = false;
       this.addToast('Subsistema editada con éxito', 'success');
@@ -59,12 +55,6 @@ export class SubsystemCreateComponent implements OnInit, OnChanges{
     }
   }
 
-/*
-ngOnChanges() {
-    
-  debugger      
-};
-*/
   public addToast(title: string, color: string) {
     const options = {
       title: title,
@@ -77,10 +67,9 @@ ngOnChanges() {
   }
 
   public initForm(item?: Subsystem) {
-    
     this.subsystemForm = this.fb.group({
       subsystem_id: [item && item.sub_sistema_id || null],
-      nombre_sub_sistema: [item && item.nombre_sub_sistema || '',[ Validators.required]],
+      nombre_sub_sistema: [item && item.nombre_sub_sistema || '', [Validators.required]],
       estado: [item && item.estado || false, [Validators.required]],
       sede_nombre: [item && item.sede_nombre || null, [Validators.required]],
       sede_id: [item && item.sede_id || null]
@@ -122,9 +111,4 @@ ngOnChanges() {
   public elementDelete(item: any) {
     this.deleteSubsystem.emit(item);
   }
-
-
-
-  
-
 }

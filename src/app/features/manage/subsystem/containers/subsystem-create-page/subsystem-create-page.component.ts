@@ -19,17 +19,14 @@ export class SubsystemCreatePageComponent implements OnInit {
 
 
  ngOnInit(): void {
-    this.getAllSubsystem();
-    
+    this.getAllSubsystem();   
     this.getAllCampus();
   }
 
   public getAllCampus() {
-    this.manageService.getCampus().subscribe((res: any) => {  
-         
-      this.campusList = res.data;
-      
-    })
+    this.manageService.getCampus().subscribe((res: any) => {          
+      this.campusList = res.data;     
+    });
   }
 
   public getAllSubsystem() {
@@ -45,8 +42,7 @@ export class SubsystemCreatePageComponent implements OnInit {
 
   public saveSubsystem(subsystem: Subsystem) {
     this.manageService.addSubsystem(subsystem).subscribe((res) => {
-      if (res) {
-        
+      if (res) {       
         this.saveSuccess = true;
         this.getAllSubsystem();
       }
@@ -72,5 +68,4 @@ export class SubsystemCreatePageComponent implements OnInit {
       }
     });
   }
-
 }
