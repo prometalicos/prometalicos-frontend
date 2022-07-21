@@ -18,7 +18,6 @@
     </c-card-body>
   </c-card>
 </c-col>
-
 <!-- modal creacion de sede -->
 <c-modal #createCampusModal alignment="center" id="createCampusModal" size="lg" [visible]="visible" (visibleChange)="handleLiveDemoChange($event)">
   <c-modal-header>
@@ -30,15 +29,15 @@
     <form cForm [formGroup]="campusForm" class="row g-3 needs-validation">
       <c-col [md]="6">
         <label cLabel>Nombre:</label>
-        <input cFormControl formControlName="nombre" maxlength="128" />
-        <c-alert color="danger" *ngIf="campusForm.get('nombre').invalid && campusForm.get('nombre').touched">
-          {{getCorrectError(campusForm.get('nombre'))}}</c-alert>
+        <input cFormControl formControlName="nombre_sede" maxlength="128" />
+        <c-alert color="danger" *ngIf="campusForm.get('nombre_sede').invalid && campusForm.get('nombre_sede').touched">
+          {{getCorrectError(campusForm.get('nombre_sede'))}}</c-alert>
       </c-col>
       <c-col [md]="6">
         <label cLabel>Concesión:</label>
         <select class="form-control" cSelect cFormControl formControlName="concesion_nombre" (change)="changeConcession($event)">
-          <option [selected]="concesion.nombre === campusForm.get('concesion_nombre').value" *ngFor="let concesion of concessionSelect" 
-          value={{concesion.nombre}}>{{concesion.nombre}}</option>
+          <option [selected]="concesion.nombre_concesion === campusForm.get('concesion_nombre').value" *ngFor="let concesion of concessionSelect" 
+          value={{concesion.nombre_concesion}}>{{concesion.nombre_concesion}}</option>
         </select>
         <c-alert color="danger"
           *ngIf="campusForm.get('concesion_nombre').invalid && campusForm.get('concesion_nombre').touched">

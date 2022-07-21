@@ -1,1 +1,11 @@
-<app-subsystem-create></app-subsystem-create>
+<app-subsystem-create>
+(saveSubsystem)="saveSubsystem($event)"
+(editSubsystem)="editSubsystem($event)"
+(deleteSubsystem)="deleteSubsystem($event)"
+[saveSuccess]="saveSuccess"
+[editSuccess]="editSuccess"
+[deleteSuccess]="deleteSuccess"
+[subsystemList]="subsystemList"
+[campusList]="campusList">
+</app-subsystem-create>
+
