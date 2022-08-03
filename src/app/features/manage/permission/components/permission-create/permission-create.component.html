@@ -1,0 +1,67 @@
+<c-toaster class="p-3" position="fixed" [placement]="placement"></c-toaster>
+<c-col xs="12">
+  <c-card class="mb-4">
+    <c-card-header class="card-header">
+      <div class="card-header__title">
+        <c-icon name="cil-house" size="lg"></c-icon>
+        <h5>Permiso</h5>
+      </div>
+      <button cButton color="success" (click)="openPermissionModal(false)">
+        <c-icon name="cil-plus"></c-icon>
+        Añadir permiso
+      </button>
+    </c-card-header>
+    <c-card-body>
+      <app-general-table [columns]="columns" [data]="permissionList" (onEdition)="openPermissionModal(true, $event)"
+      (onDelete)="elementDelete($event)">
+    </app-general-table>
+    </c-card-body>
+  </c-card>
+</c-col>
+<!-- modal creacion de permiso -->
+<c-modal #createPermissionModal alignment="center" id="createPermissionModal" size="lg" [visible]="visible" (visibleChange)="handleLiveDemoChange($event)">
+  <c-modal-header>
+    <h5 cModalTitle *ngIf="!isEdition">Nuevo permiso</h5>
+    <h5 cModalTitle *ngIf="isEdition">Editar permiso</h5>
+    <button [cModalToggle]="createPermissionModal.id" cButtonClose></button>
+  </c-modal-header>
+  <c-modal-body>
+    <form cForm [formGroup]="permissionForm" class="row g-3 needs-validation">
+      <c-col [md]="6">
+        <label cLabel>Nombre:</label>
+        <input cFormControl formControlName="nombre_permiso" maxlength="128" />
+        <c-alert color="danger" *ngIf="permissionForm.get('nombre_permiso').invalid && permissionForm.get('nombre_permiso').touched">
+          {{getCorrectError(permissionForm.get('nombre_permiso'))}}</c-alert>
+      <c-col [md]="6">
+        <label cLabel>Padre:</label>
+        <input cFormControl formControlName="padre" maxlength="128" />
+        <c-alert color="danger" *ngIf="permissionForm.get('padre').invalid && permissionForm.get('padre').touched">
+          {{getCorrectError(permissionForm.get('padre'))}}</c-alert>
+      </c-col>
+      <c-col [md]="6">
+        <label cLabel>Nivel:</label>
+        <input cFormControl formControlName="nivel" maxlength="128" />
+        <c-alert color="danger" *ngIf="permissionForm.get('nivel').invalid && permissionForm.get('nivel').touched">
+          {{getCorrectError(permissionForm.get('nivel'))}}</c-alert>
+      </c-col>
+      <c-col [md]="6">
+        <label cLabel>Icono:</label>
+        <input cFormControl formControlName="icono" maxlength="128" />
+        <c-alert color="danger" *ngIf="permissionForm.get('icono').invalid && permissionForm.get('icono').touched">
+          {{getCorrectError(permissionForm.get('icono'))}}</c-alert>
+      </c-col>
+      <c-col [md]="6">
+        <label cLabel>URL:</label>
+        <input cFormControl formControlName="url" maxlength="128" />
+        <c-alert color="danger" *ngIf="permissionForm.get('url').invalid && permissionForm.get('url').touched">
+          {{getCorrectError(permissionForm.get('url'))}}</c-alert>
+      </c-col>
+ 
+
+  <c-modal-footer>
+    <button [cModalToggle]="createPermissionModal.id" cButton color="secondary">
+      Cerrar
+    </button>
+    <button cButton color="primary" [disabled]="permissionForm.invalid" (click)="saveForm(permissionForm.value)">Guardar</button>
+  </c-modal-footer>
+

@@ -11,16 +11,8 @@ import { SubsystemCreateComponent } from './subsystem/components/subsystem-creat
 import { SubsystemCreatePageComponent } from './subsystem/containers/subsystem-create-page/subsystem-create-page.component';
 import { Periferic_typeCreateComponent } from './periferic_type/components/periferic_type-create/periferic_type-create.component';
 import { Periferic_typeCreatePageComponent } from './periferic_type/containers/periferic_type-create-page/periferic_type-create-page.component';
-import { PerifericCreateComponent } from './periferic/components/periferic-create/periferic-create.component';
-import { PerifericCreatePageComponent } from './periferic/containers/periferic-create-page/periferic-create-page.component';
-import { Port_cardCreateComponent } from './port_card/components/port_card-create/port_card-create.component';
-import { Port_cardCreatePageComponent } from './port_card/containers/port_card-create-page/port_card-create-page.component';
-import { PermissionCreateComponent } from './permission/components/permission-create/permission-create.component';
-import { PermissionCreatePageComponent } from './permission/containers/permission-create-page/permission-create-page.component';
-import { RoleCreateComponent } from './role/components/role-create/role-create.component';
-import { RoleCreatePageComponent } from './role/containers/role-create-page/role-create-page.component';
 
-import { CardModule, ButtonModule, GridModule, FormModule, BadgeModule, AlertModule, TableModule, UtilitiesModule, CollapseModule, ToastComponent, ToastModule, MultiSelectModule } from '@coreui/angular-pro';
+import { CardModule, ButtonModule, GridModule, FormModule, BadgeModule, AlertModule, TableModule, UtilitiesModule, CollapseModule, ToastComponent, ToastModule } from '@coreui/angular-pro';
 import { IconModule } from '@coreui/icons-angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ModalModule, SmartTableModule } from '@coreui/angular-pro';
@@ -71,37 +63,9 @@ const routes: Routes = [
       },
       {
         path: 'periferic_type',
-        component: Periferic_typeCreatePageComponent,
+        component: SubsystemCreatePageComponent,
         data: {
           title: 'Tipo perifericos',
-        },
-      },
-      {
-        path: 'periferic',
-        component: PerifericCreatePageComponent,
-        data: {
-          title: 'Perifericos',
-        },
-      },
-      {
-        path: 'port_card',
-        component: Port_cardCreatePageComponent,
-        data: {
-          title: 'tarjeta puerto',
-        },
-      },
-      {
-        path: 'permission',
-        component: PermissionCreatePageComponent,
-        data: {
-          title: 'tarjeta puerto',
-        },
-      },
-      {
-        path: 'role',
-        component: RoleCreatePageComponent,
-        data: {
-          title: 'tarjeta puerto',
         },
       },
     
@@ -110,7 +74,7 @@ const routes: Routes = [
 ];
 
 
-@NgModule({
+@odule({
   declarations: [
     ConcessionCreatePageComponent,
     ConcessionCreateComponent,
@@ -123,14 +87,6 @@ const routes: Routes = [
     GeneralTableComponent,
     Periferic_typeCreatePageComponent,
     Periferic_typeCreateComponent,
-    PerifericCreatePageComponent,
-    PerifericCreateComponent,
-    Port_cardCreateComponent,
-    Port_cardCreatePageComponent,
-    PermissionCreateComponent,
-    PermissionCreatePageComponent,
-    RoleCreateComponent,
-    RoleCreatePageComponent,
   ],
   imports: [
     CommonModule,
@@ -151,8 +107,7 @@ const routes: Routes = [
     SmartTableModule,
     UtilitiesModule,
     ToastModule,
-    AppToastModule,
-    MultiSelectModule,
+    AppToastModule
   ]
 })
 export class ManageModule { }

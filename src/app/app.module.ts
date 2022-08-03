@@ -5,6 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http'
 
+
 import {
   PERFECT_SCROLLBAR_CONFIG,
   PerfectScrollbarConfigInterface,
@@ -44,7 +45,8 @@ import {
   SidebarModule,
   TabsModule,
   UtilitiesModule,
-  ModalModule
+  ModalModule,
+  MultiSelectModule,
 } from '@coreui/angular-pro';
 
 import { IconModule, IconSetModule, IconSetService } from '@coreui/icons-angular';
@@ -97,6 +99,7 @@ const APP_CONTAINERS = [
     BadgeModule,
     ListGroupModule,
     CardModule,
+    MultiSelectModule,
     ModalModule,
     HttpClientModule,
     SmartTableModule,

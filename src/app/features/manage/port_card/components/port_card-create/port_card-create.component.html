@@ -1,0 +1,82 @@
+<c-toaster class="p-3" position="fixed" [placement]="placement"></c-toaster>
+<c-col xs="12">
+  <c-card class="mb-4">
+    <c-card-header class="card-header">
+      <div class="card-header__title">
+        <c-icon name="cil-house" size="lg"></c-icon>
+        <h5>Tarjeta puerto</h5>
+      </div>
+      <button cButton color="success" (click)="openPort_cardModal(false)">
+        <c-icon name="cil-plus"></c-icon>
+        Añadir tarjeta puerto
+      </button>
+    </c-card-header>
+    <c-card-body>
+      <app-general-table [columns]="columns" [data]="port_cardList" (onEdition)="openPort_cardModal(true, $event)"
+      (onDelete)="elementDelete($event)">
+    </app-general-table>
+    </c-card-body>
+  </c-card>
+</c-col>
+<!-- modal creacion de tarjeta puerto -->
+<c-modal #createPort_cardModal alignment="center" id="createPort_cardModal" size="lg" [visible]="visible" (visibleChange)="handleLiveDemoChange($event)">
+  <c-modal-header>
+    <h5 cModalTitle *ngIf="!isEdition">Nueva tarjeta puerto</h5>
+    <h5 cModalTitle *ngIf="isEdition">Editar tarjeta puerto</h5>
+    <button [cModalToggle]="createPort_cardModal.id" cButtonClose></button>
+  </c-modal-header>
+  <c-modal-body>
+    <form cForm [formGroup]="port_cardForm" class="row g-3 needs-validation">
+      <c-col [md]="6">
+        <label cLabel>Nombre:</label>
+        <input cFormControl formControlName="nombre_tarjeta_puertos" maxlength="128" />
+        <c-alert color="danger" *ngIf="port_cardForm.get('nombre_tarjeta_puertos').invalid && port_cardForm.get('nombre_tarjeta_puertos').touched">
+          {{getCorrectError(port_cardForm.get('nombre_tarjeta_puertos'))}}</c-alert>
+      </c-col>
+      <c-col [md]="6">
+        <label cLabel>Periferico:</label>
+        <select class="form-control" cSelect cFormControl formControlName="nombre_periferico" (change)="changePeriferic($event)">
+          <option [selected]="periferic.nombre_periferico === port_cardForm.get('nombre_periferico').value" *ngFor="let periferic of perifericSelect" 
+          value={{periferic.nombre_periferico}}>{{periferic.nombre_periferico}}</option>
+        </select>
+        <c-alert color="danger"
+          *ngIf="port_cardForm.get('nombre_periferico').invalid && port_cardForm.get('nombre_periferico').touched">
+          {{getCorrectError(port_cardForm.get('nombre_periferico'))}}</c-alert>
+      </c-col>
+      <c-col [md]="6">
+        <label cLabel>ip:</label>
+        <input cFormControl formControlName="ip" maxlength="128" />
+        <c-alert color="danger" *ngIf="port_cardForm.get('ip').invalid && port_cardForm.get('ip').touched">
+          {{getCorrectError(port_cardForm.get('ip'))}}</c-alert>
+      </c-col>
+      <c-col [md]="6">
+        <label cLabel>Puerto:</label>
+        <input cFormControl formControlName="puerto" maxlength="128" />
+        <c-alert color="danger" *ngIf="port_cardForm.get('puerto').invalid && port_cardForm.get('puerto').touched">
+          {{getCorrectError(port_cardForm.get('puerto'))}}</c-alert>
+      </c-col>
+      <c-col [md]="6">
+        <label cLabel>Tipo:</label>
+        <input cFormControl formControlName="tipo" maxlength="128" />
+        <c-alert color="danger" *ngIf="port_cardForm.get('tipo').invalid && port_cardForm.get('tipo').touched">
+          {{getCorrectError(port_cardForm.get('tipo'))}}</c-alert>
+      </c-col>
+      <c-col [xs]="12">
+        <c-form-check [switch]="true" class="mb-3" sizing="xl">
+          <input cFormCheckInput type="checkbox" formControlName="estado" id="checkIsActive"
+            [checked]="port_cardForm.get('estado').value" />
+          <label cFormCheckLabel *ngIf="port_cardForm.get('estado').value === false" for="checkIsActive" class="mx-1">
+            Activar tarjeta puerto</label>
+          <label cFormCheckLabel *ngIf="port_cardForm.get('estado').value === true" for="checkIsActive" class="mx-1">
+            Desactivar tarjeta puerto</label>
+        </c-form-check>
+      </c-col>
+    </form>
+  </c-modal-body>
+  <c-modal-footer>
+    <button [cModalToggle]="createPort_cardModal.id" cButton color="secondary">
+      Cerrar
+    </button>
+    <button cButton color="primary" [disabled]="port_cardForm.invalid" (click)="saveForm(port_cardForm.value)">Guardar</button>
+  </c-modal-footer>
+</c-modal>

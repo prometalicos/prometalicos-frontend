@@ -1,0 +1,56 @@
+<c-toaster class="p-3" position="fixed" [placement]="placement"></c-toaster>
+<c-col xs="12">
+  <c-card class="mb-4">
+    <c-card-header class="card-header">
+      <div class="card-header__title">
+        <c-icon name="cil-house" size="lg"></c-icon>
+        <h5>Rol</h5>
+      </div>
+      <button cButton color="success" (click)="openRoleModal(false)">
+        <c-icon name="cil-plus"></c-icon>
+        Añadir Rol
+      </button>
+    </c-card-header>
+    <c-card-body>
+      <app-general-table [columns]="columns" [data]="roleList" (onEdition)="openRoleModal(true, $event)"
+      (onDelete)="elementDelete($event)">
+    </app-general-table>
+    </c-card-body>
+  </c-card>
+</c-col>
+<!-- modal creacion de rol -->
+<c-modal #createRoleModal alignment="center" id="createRoleModal" size="lg" [visible]="visible" (visibleChange)="handleLiveDemoChange($event)">
+  <c-modal-header>
+    <h5 cModalTitle *ngIf="!isEdition">Nuevo Rol</h5>
+    <h5 cModalTitle *ngIf="isEdition">Editar Rol</h5>
+    <button [cModalToggle]="createRoleModal.id" cButtonClose></button>
+  </c-modal-header>
+  <c-modal-body>
+    <form cForm [formGroup]="roleForm" class="row g-3 needs-validation">
+      <c-col [md]="6">
+        <label cLabel>Nombre:</label>
+        <input cFormControl formControlName="nombre_rol" maxlength="128" />
+        <c-alert color="danger" *ngIf="roleForm.get('nombre_rol').invalid && roleForm.get('nombre_permiso').touched">
+          {{getCorrectError(roleForm.get('nombre_rol'))}}</c-alert>
+      </c-col>
+      <c-col [md]="6">
+        <label cLabel>Permisos:</label>
+        
+          <c-multi-select formControlName="multiSelect" multiple> 
+            <c-multi-select-option *ngFor="let permission of permissionList">{{permission.nombre_permiso}}</c-multi-select-option>
+        </c-multi-select>
+
+        <c-alert color="danger"
+          *ngIf="roleForm.get('permisos').invalid && roleForm.get('permisos').touched">
+          {{getCorrectError(roleForm.get('permisos'))}}</c-alert>
+      </c-col>
+   
+    </form>  
+  </c-modal-body>
+  <c-modal-footer>
+    <button [cModalToggle]="createRoleModal.id" cButton color="secondary">
+      Cerrar
+    </button>
+    <button cButton color="primary" [disabled]="roleForm.invalid" (click)="saveForm(roleForm.value)">Guardar</button>
+  </c-modal-footer>
+</c-modal>

@@ -30,14 +30,13 @@ export class SubsystemCreatePageComponent implements OnInit {
   }
 
   public getAllSubsystem() {
-    /*
+    
     this.manageService.getSubsystem().subscribe((res: any) => {
       
       this.subsystemList = res.data;
-      
-      
+
     })
-    */
+    
   }
 
   public saveSubsystem(subsystem: Subsystem) {
@@ -51,9 +50,8 @@ export class SubsystemCreatePageComponent implements OnInit {
 
   public editSubsystem(subsystem: Subsystem) {
     this.manageService.editSubsystem(subsystem).subscribe((res: any) => {
-      this.editSuccess = true;
-        this.getAllSubsystem();
-      if (res) {
+      
+      if (res.status == 200) {
         this.editSuccess = true;
         this.getAllSubsystem();
       }

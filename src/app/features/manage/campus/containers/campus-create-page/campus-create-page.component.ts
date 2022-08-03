@@ -37,6 +37,7 @@ export class CampusCreatePageComponent implements OnInit {
   }
 
   public saveCampus(campus: Campus) {
+    
     this.manageService.addCampus(campus).subscribe((res) => {
       if (res) {
         this.saveSuccess = true;
@@ -46,6 +47,7 @@ export class CampusCreatePageComponent implements OnInit {
   }
 
   public editCampus(campus: Campus) {
+    
     this.manageService.editCampus(campus).subscribe((res: any) => {
       this.editSuccess = true;
         this.getAllCampus();

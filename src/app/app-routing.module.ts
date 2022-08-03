@@ -5,6 +5,7 @@ import { DefaultLayoutComponent } from './core/layout';
 import { AuthGuard } from './core/guards/auth-guard.guard';
 import { NotFoundComponent } from './features/not-found-page/components/not-found/not-found.component';
 
+
 const routes: Routes = [
   {
     path: '',
@@ -49,7 +50,7 @@ const routes: Routes = [
       anchorScrolling: 'enabled',
       initialNavigation: 'enabledBlocking'
       // relativeLinkResolution: 'legacy'
-    })
+    }),
   ],
   exports: [RouterModule]
 })

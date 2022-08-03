@@ -46,7 +46,7 @@ export class ConcessionCreatePageComponent implements OnInit {
   public editConcession(concession: Concession) {
     
     this.manageService.editConcession(concession).subscribe((respuestaa: any) => {
-      console.log(respuestaa)
+      
       
 
       if (respuestaa == null) {
